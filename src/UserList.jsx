@@ -1,4 +1,4 @@
-export default function UserList({users}) {
+export default function UserList({list}) {
   return (
     <table>
       <thead>
@@ -10,7 +10,7 @@ export default function UserList({users}) {
         </tr>
       </thead>
       <tbody>
-        {users.map((user) => (
+        {list.map((user) => (
           <tr key={user.id}>
             <td>{user.id}</td>
             <td>{user.first_name}</td>
