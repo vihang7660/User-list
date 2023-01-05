@@ -1,6 +1,6 @@
-export default function UserList({list}) {
+export default function UserList({ filteredUsers }) {
   return (
-    <table>
+    <table className="user-list">
       <thead>
         <tr>
           <th>Id</th>
@@ -10,7 +10,7 @@ export default function UserList({list}) {
         </tr>
       </thead>
       <tbody>
-        {list.map((user) => (
+        {filteredUsers.map((user) => (
           <tr key={user.id}>
             <td>{user.id}</td>
             <td>{user.first_name}</td>

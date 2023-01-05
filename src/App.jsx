@@ -1,25 +1,37 @@
 import { useEffect, useState } from "react";
+import Navbar from "./Navbar";
 import SearchBox from "./SearchBox";
 import UserList from "./UserList";
 
 function App() {
-  const [users, setUsers] = useState([]);
-  const [list, setList] = useState(users);
+  const [allUsers, setAllUsers] = useState([]);
+  const [filteredUsers, setFilteredUsers] = useState([]);
 
   useEffect(() => {
     fetch("https://reqres.in/api/users?page=2")
       .then((resp) => resp.json())
       .then((data) => {
-        setUsers(data.data);
-        setList(data.data);
+        setAllUsers(data.data);
+        setFilteredUsers(data.data);
       });
   }, []);
 
+  function handleSearch(searchText) {
+    setFilteredUsers(
+      allUsers.filter((user) =>
+        user.first_name.toLowerCase().includes(searchText.toLowerCase())
+      )
+    );
+  }
+
   return (
-    <div>
-      <SearchBox setList={setList} users={users} />
-      <UserList list={list} />
-    </div>
+    <>
+      <Navbar />
+      <main>
+        <SearchBox handleSearch={handleSearch} />
+        <UserList filteredUsers={filteredUsers} />
+      </main>
+    </>
   );
 }
 

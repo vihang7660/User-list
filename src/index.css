@@ -1,0 +1,28 @@
+#root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.user-list {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.user-list th {
+  background-color: lightgray;
+  text-align: left;
+  padding: 8px;
+}
+
+.user-list td {
+  border: 1px solid lightgray;
+  padding: 8px;
+}
