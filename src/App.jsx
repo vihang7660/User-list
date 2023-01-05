@@ -6,6 +6,7 @@ import UserList from "./UserList";
 function App() {
   const [allUsers, setAllUsers] = useState([]);
   const [filteredUsers, setFilteredUsers] = useState([]);
+  const [isLoading, setLoading] = useState(true);
 
   useEffect(() => {
     fetch("https://reqres.in/api/users?page=2")
@@ -13,7 +14,8 @@ function App() {
       .then((data) => {
         setAllUsers(data.data);
         setFilteredUsers(data.data);
-      });
+      })
+      .finally(() => setLoading(false));
   }, []);
 
   function handleSearch(searchText) {
@@ -27,10 +29,14 @@ function App() {
   return (
     <>
       <Navbar />
-      <main>
-        <SearchBox handleSearch={handleSearch} />
-        <UserList filteredUsers={filteredUsers} />
-      </main>
+      {isLoading ? (
+        <h2>Loading...</h2>
+      ) : (
+        <main>
+          <SearchBox handleSearch={handleSearch} />
+          <UserList filteredUsers={filteredUsers} />
+        </main>
+      )}
     </>
   );
 }

@@ -1,4 +1,7 @@
 export default function UserList({ filteredUsers }) {
+  if (filteredUsers.length === 0 ) {
+    return <h2>No user found</h2>
+  }
   return (
     <table className="user-list">
       <thead>
